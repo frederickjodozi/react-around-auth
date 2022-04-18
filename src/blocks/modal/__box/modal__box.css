@@ -1,0 +1,30 @@
+.modal__box {
+    width: 430px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 34px 36px 36px 36px;
+    color: #000;
+    background-color: #FFF;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .modal__box {
+        width: 350px;
+    }
+}
+
+@media (max-width: 400px) {
+    .modal__box {
+        width: 300px;
+    }
+}
+
+@media (max-width: 320px) {
+    .modal__box {
+        width: 282px;
+        padding: 25px 22px;
+    }
+}

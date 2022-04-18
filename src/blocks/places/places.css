@@ -1,0 +1,11 @@
+@import url(./__list/places__list.css);
+
+.places {
+    padding: 50px 0 0 0;
+}
+
+@media (max-width: 320px) {
+    .places {
+        padding: 36px 0 0 0;
+    }
+}

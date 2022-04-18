@@ -1,0 +1,27 @@
+@import url(./vendor/normalize.css);
+@import url(./vendor/fonts/fonts.css);
+@import url(./blocks/page/page.css);
+@import url(./blocks/header/header.css);
+@import url(./blocks/profile/profile.css);
+@import url(./blocks/places/places.css);
+@import url(./blocks/card/card.css);
+@import url(./blocks/footer/footer.css);
+@import url(./blocks/modal/modal.css);
+@import url(./blocks/modal/_type/modal_type_image-preview.css);
+@import url(./blocks/modal/_type/modal_type_form.css);
+@import url(./blocks/modal/_open/modal_open.css);
+@import url(./blocks/modal/__box/modal__box.css);
+@import url(./blocks/modal/__close-button/modal__close-button.css);
+@import url(./blocks/modal/__title/modal__title.css);
+@import url(./blocks/modal/__form/modal__form.css);
+@import url(./blocks/modal/__form/_type/modal__form_type_small.css);
+@import url(./blocks/modal/__input/modal__input.css);
+@import url(./blocks/modal/__input-error/modal__input-error.css);
+@import url(./blocks/modal/__input-error/_active/modal__input-error_active.css);
+@import url(./blocks/modal/__save-button/modal__save-button.css);
+@import url(./blocks/modal/__save-button/_type/modal__save-button_type_small.css);
+@import url(./blocks/modal/__save-button/_inactive/modal__save-button_inactive.css);
+@import url(./blocks/modal/__figure/modal__figure.css);
+@import url(./blocks/modal/__image/modal__image.css);
+@import url(./blocks/modal/__caption/modal__caption.css);
+

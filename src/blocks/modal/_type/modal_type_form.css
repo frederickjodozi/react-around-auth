@@ -1,0 +1,5 @@
+.modal_type_form{
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.5s linear 0s, opacity 0.5s linear 0s;
+}

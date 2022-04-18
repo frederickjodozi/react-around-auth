@@ -1,0 +1,9 @@
+.modal__save-button_inactive {
+    color: #000;
+    border: 1px solid #000;
+    background-color: #fff;
+}
+
+.modal__save-button_inactive:hover {
+    cursor: default;
+}

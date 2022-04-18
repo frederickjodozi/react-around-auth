@@ -1,0 +1,6 @@
+.profile__avatar-button {
+    height: 26px;
+    width: 26px;
+    opacity: 0;
+    transition: opacity 0.5s;
+}

@@ -1,0 +1,21 @@
+.page__wrapper {
+    margin: 0 15.625%;
+}
+
+@media (max-width: 1024px) {
+    .page__wrapper {
+        margin: 0 11.6%;
+    }
+}
+
+@media (max-width: 768px) {
+    .page__wrapper {
+        margin: 0 7.6%;
+    }
+}
+
+@media (max-width: 320px) {
+    .page__wrapper {
+        margin: 0 5.9375%;
+    }
+}

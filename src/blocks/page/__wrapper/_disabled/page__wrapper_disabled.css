@@ -1,0 +1,5 @@
+@media (max-width: 320px) {
+    .page__wrapper_disabled {
+        margin: 0;
+}
+}

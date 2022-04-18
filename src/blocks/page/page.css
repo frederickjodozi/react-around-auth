@@ -1,0 +1,11 @@
+@import url(./__wrapper/page__wrapper.css);
+@import url(./__wrapper/_disabled/page__wrapper_disabled.css);
+
+.page {
+    max-width: 1280px;
+    height: 100%;
+    background-color: #000;
+    color: #FFF;
+    margin: auto;
+    position: relative;
+}
