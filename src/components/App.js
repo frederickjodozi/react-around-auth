@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import UserContext from '../contexts/CurrentUserContext';
 import api from '../utils/api';
 import Header from './Header';
@@ -103,15 +104,25 @@ function App() {
     <UserContext.Provider value = {currentUser}>
       <div className="page">
         <Header/>
-        <Main
-          onEditProfileClick={handleEditProfileClick}
-          onAddPlaceClick={handleAddPlaceClick}
-          onEditAvatarClick={handleEditAvatarClick}
-          cards={cards}
-          onCardClick={handleCardClick}
-          onCardLike={handleCardLike}
-          onCardDeleteClick={handleCardDeleteClick}
-        />
+        <Routes>
+          <ProtectedRoute exact path ='/' loggedIn={isLoggedIn}>
+            <Main
+              onEditProfileClick={handleEditProfileClick}
+              onAddPlaceClick={handleAddPlaceClick}
+              onEditAvatarClick={handleEditAvatarClick}
+              cards={cards}
+              onCardClick={handleCardClick}
+              onCardLike={handleCardLike}
+              onCardDeleteClick={handleCardDeleteClick}
+            />
+          </ProtectedRoute>
+          <Route path ='/signup'>
+            <Register onRegister={handleRegister} />
+          </Route>
+          <Route path ='/signin'>
+            <Login onLogin={handleLogin} />
+          </Route>
+        </Routes>
         <Footer/>
         <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
