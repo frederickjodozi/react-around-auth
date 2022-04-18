@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { useState, useEffect } from 'react';
 import UserContext from '../contexts/CurrentUserContext';
 import api from '../utils/api';
