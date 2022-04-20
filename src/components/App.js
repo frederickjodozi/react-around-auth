@@ -5,6 +5,8 @@ import api from '../utils/api';
 import ProtectedRoute from './ProtectedRoute';
 import Header from './Header';
 import Main from './Main';
+import Register from './Register';
+import Login from './Login';
 import Footer from './Footer';
 import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
@@ -106,23 +108,24 @@ function App() {
       <div className="page">
         <Header/>
         <Routes>
-          <ProtectedRoute exact path ='/' loggedIn={isLoggedIn}>
-            <Main
-              onEditProfileClick={handleEditProfileClick}
-              onAddPlaceClick={handleAddPlaceClick}
-              onEditAvatarClick={handleEditAvatarClick}
-              cards={cards}
-              onCardClick={handleCardClick}
-              onCardLike={handleCardLike}
-              onCardDeleteClick={handleCardDeleteClick}
-            />
-          </ProtectedRoute>
-          <Route path ='/signup'>
-            <Register onRegister={handleRegister} />
-          </Route>
-          <Route path ='/signin'>
-            <Login onLogin={handleLogin} />
-          </Route>
+          <Route
+            path='/'
+            element={
+              <ProtectedRoute /*isLoggedIn={isLoggedIn}*/>
+                <Main
+                  onEditProfileClick={handleEditProfileClick}
+                  onAddPlaceClick={handleAddPlaceClick}
+                  onEditAvatarClick={handleEditAvatarClick}
+                  cards={cards}
+                  onCardClick={handleCardClick}
+                  onCardLike={handleCardLike}
+                  onCardDeleteClick={handleCardDeleteClick}
+                />
+              </ProtectedRoute>
+            }
+          />
+          <Route path='/signup' element={<Register /*onRegister={handleRegister}*/ />}/>
+          <Route path='/signin' element={<Login /*onLogin={handleLogin}*/ />}/>
         </Routes>
         <Footer/>
         <EditProfilePopup
