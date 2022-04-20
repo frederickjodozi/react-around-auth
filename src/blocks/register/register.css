@@ -1,0 +1,25 @@
+@import url(./__title/register__title.css);
+@import url(./__form/register__form.css);
+@import url(./__input/register__input.css);
+@import url(./__save/register__save-button.css);
+@import url(./__link/register__link.css);
+
+.register {
+  margin: 0;
+  padding: 60px 0 144px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .register {
+    padding: 60px 0 181px 0;
+  }
+}
+
+@media (max-width: 320px) {
+  .register {
+    padding: 40px 0 325px 0;
+  }
+}
