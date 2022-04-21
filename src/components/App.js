@@ -105,7 +105,7 @@ function App() {
 
   return (
     <UserContext.Provider value = {currentUser}>
-      <div className="page">
+      <div className='page'>
         <Header/>
         <Routes>
           <Route

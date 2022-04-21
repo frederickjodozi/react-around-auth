@@ -7,7 +7,7 @@ function CardDeletePopup({ card, onClose, onDeleteCard }) {
   };
 
   return (
-    <PopupWithForm title="Are You Sure?" formName="deleteCardForm" buttonText="Yes" card={card} onClose={onClose} onSubmit={handleSubmit}/>
+    <PopupWithForm title='Are You Sure?' formName='deleteCardForm' buttonText='Yes' card={card} onClose={onClose} onSubmit={handleSubmit}/>
   );
 }
 

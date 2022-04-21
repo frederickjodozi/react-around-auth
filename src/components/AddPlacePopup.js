@@ -31,31 +31,31 @@ function AddPlacePopup({ isOpen, onClose, onAddCard }) {
   };
 
   return (
-    <PopupWithForm title='New Place' formName="addPlaceForm" buttonText="Create" isOpen={isOpen} onClose={onClose} onSubmit={handleSubmit}>
+    <PopupWithForm title='New Place' formName='addPlaceForm' buttonText='Create' isOpen={isOpen} onClose={onClose} onSubmit={handleSubmit}>
       <input
-        type="text"
-        name="name"
-        className="modal__input modal__input_content_card-name"
-        id="modal__card-name"
+        type='text'
+        name='name'
+        className='modal__input modal__input_content_card-name'
+        id='modal__card-name'
         value={cardName}
         onChange={handleCardNameChange}
-        placeholder="Title"
-        minLength="2"
-        maxLength="30"
+        placeholder='Title'
+        minLength='2'
+        maxLength='30'
         required
       />
-      <span className="modal__input-error" id="modal__card-name-error"/>
+      <span className='modal__input-error' id='modal__card-name-error'/>
       <input
-        type="url"
-        name="link"
-        className="modal__input modal__input_content_card-link"
-        id="modal__card-link"
+        type='url'
+        name='link'
+        className='modal__input modal__input_content_card-link'
+        id='modal__card-link'
         value={cardLink}
         onChange={handleCardLinkChange}
-        placeholder="Image Link"
+        placeholder='Image Link'
         required
       />
-      <span className="modal__input-error" id="modal__card-link-error"/>
+      <span className='modal__input-error' id='modal__card-link-error'/>
     </PopupWithForm>
   );
 }

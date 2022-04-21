@@ -18,17 +18,17 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
   };
 
   return (
-    <PopupWithForm title="Edit Avatar" formName="editAvatarForm" buttonText="Save Picture" isOpen={isOpen} onClose={onClose} onSubmit={handleSubmit}>
+    <PopupWithForm title='Edit Avatar' formName='editAvatarForm' buttonText='Save Picture' isOpen={isOpen} onClose={onClose} onSubmit={handleSubmit}>
       <input
-        type="url"
-        name="avatar"
-        className="modal__input modal__input_content_avatar-link"
-        id="modal__avatar-link"
+        type='url'
+        name='avatar'
+        className='modal__input modal__input_content_avatar-link'
+        id='modal__avatar-link'
         ref={inputRef}
-        placeholder="Image Link"
+        placeholder='Image Link'
         required
       />
-      <span className="modal__input-error" id="modal__avatar-link-error"/>
+      <span className='modal__input-error' id='modal__avatar-link-error'/>
     </PopupWithForm>
   );
 }
