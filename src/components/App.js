@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import UserContext from '../contexts/CurrentUserContext';
 import api from '../utils/api';
 import ProtectedRoute from './ProtectedRoute';
@@ -7,6 +7,7 @@ import Header from './Header';
 import Main from './Main';
 import Register from './Register';
 import Login from './Login';
+import InfoToolTip from './InfoToolTip';
 import Footer from './Footer';
 import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
@@ -126,6 +127,8 @@ function App() {
           />
           <Route path='/signup' element={<Register /*onRegister={handleRegister}*/ />}/>
           <Route path='/signin' element={<Login /*onLogin={handleLogin}*/ />}/>
+          <Route path='/infotooltip' element={<InfoToolTip/>} />
+          <Route path='/*' element ={<Navigate to='/' />} />
         </Routes>
         <Footer/>
         <EditProfilePopup
