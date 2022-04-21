@@ -6,6 +6,7 @@
 	],
   "rules": {
     "no-underscore-dangle":  ["off", { "allow": ["id"] }],
-		"no-console": "off"
+		"no-console": "off",
+		"jsx-quotes": ["error", "prefer-single"]
   }
 }
