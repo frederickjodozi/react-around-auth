@@ -1,7 +1,7 @@
 @import url(./__title/register__title.css);
 @import url(./__form/register__form.css);
 @import url(./__input/register__input.css);
-@import url(./__save/register__save-button.css);
+@import url(./__save-button/register__save-button.css);
 @import url(./__link/register__link.css);
 
 .register {
