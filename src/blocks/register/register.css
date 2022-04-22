@@ -6,7 +6,7 @@
 
 .register {
   margin: 0;
-  padding: 60px 0 144px 0;
+  padding: 60px 0 148px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,12 +14,12 @@
 
 @media (max-width: 768px) {
   .register {
-    padding: 60px 0 181px 0;
+    padding: 60px 0 185px 0;
   }
 }
 
 @media (max-width: 320px) {
   .register {
-    padding: 40px 0 325px 0;
+    padding: 40px 0 329px 0;
   }
 }
