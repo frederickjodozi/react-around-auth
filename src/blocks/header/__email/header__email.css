@@ -1,0 +1,8 @@
+.header__email {
+  padding: 0 24px 0 0;
+  color: rgba(255,255,255,1);
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 22px;
+}

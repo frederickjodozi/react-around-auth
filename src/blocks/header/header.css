@@ -1,8 +1,14 @@
 @import url(./__logo/header__logo.css);
+@import url(./__info/header__info.css);
+@import url(./__email/header__email.css);
+@import url(./__logout-button/header__logout-button.css);
+@import url(./__link/header__link.css);
 
 .header {
     padding: 45px 0 0 0;
     border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+    display: flex;
+    justify-content: space-between;
 }
 
 @media (max-width: 768px) {
@@ -13,6 +19,6 @@
 
 @media (max-width: 320px) {
     .header {
-        padding: 28px 0 0 5.9375%;
+        padding: 28px 5.9375% 0 5.9375%;
     }
 }
