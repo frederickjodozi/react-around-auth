@@ -1,28 +1,26 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-function Login({ onLogin }) {
+function Login(onLogin) {
   // Input States //
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [inputValues, setInputValues] = useState({
+    email: '',
+    password: '',
+  });
 
   // Event Handlers //
-  const handleEmailChange = (e) => {
-    e.preventDefault();
-    setEmail(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    e.preventDefault();
-    setPassword(e.target.value);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setInputValues((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onLogin({
-      email,
-      password,
-    });
+    const { email, password } = inputValues;
+    onLogin(email, password);
   };
 
   return (
@@ -34,8 +32,8 @@ function Login({ onLogin }) {
           name='email'
           className='register__input'
           id='register__email'
-          value={email || ''}
-          onChange={handleEmailChange}
+          value={inputValues.email}
+          onChange={handleChange}
           placeholder='Email'
           required
         />
@@ -44,8 +42,8 @@ function Login({ onLogin }) {
           name='password'
           className='register__input'
           id='register__password'
-          value={password || ''}
-          onChange={handlePasswordChange}
+          value={inputValues.password}
+          onChange={handleChange}
           placeholder='Password'
           minLength='2'
           maxLength='30'
