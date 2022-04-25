@@ -51,7 +51,7 @@ function Register(onRegister) {
         />
         <button className='register__save-button' type='submit'>Sign up</button>
       </form>
-      <Link to='/signup' className='register__link'>Already a member? Log in here!</Link>
+      <Link to='/signin' className='register__link'>Already a member? Log in here!</Link>
     </div>
   );
 }
