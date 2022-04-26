@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import {
+  Routes, Route, Navigate, useNavigate,
+} from 'react-router-dom';
 import UserContext from '../contexts/CurrentUserContext';
 import api from '../utils/api';
+import * as auth from '../utils/auth';
 import ProtectedRoute from './ProtectedRoute';
 import Header from './Header';
 import Main from './Main';
@@ -16,6 +19,15 @@ import ImagePopup from './ImagePopup';
 import CardDeletePopup from './CardDeletePopup';
 
 function App() {
+  const navigate = useNavigate();
+
+  // InfoToolTip and Login States //
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [emailAdress, setEmailAdress] = useState('');
+
+  const [infoToolTipStatus, setInfoToolTipStatus] = useState('');
+  const [isInfoToolTipOpen, setIsInfoToolTipOpen] = useState(false);
+
   // Current User, Card and Popup States //
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
@@ -25,6 +37,17 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
   const [selectedCardToDelete, setSelectedCardToDelete] = useState(null);
+
+  // Token check on page load //
+  /* useEffect(() => {
+    const token = localStorage.getItem('jwt');
+    if (token) {
+      auth.checkToken(token)
+        .then((res) => {
+          console.log(res);
+        });
+    }
+  }); */
 
   //  Current User and Card Api calls on page load //
   useEffect(() => {
@@ -52,11 +75,58 @@ function App() {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
+    setIsInfoToolTipOpen(false);
     setSelectedCard(null);
     setSelectedCardToDelete(null);
   };
 
-  // Profile Updates and Add Card //
+  // Sign up and Sign in Handlers //
+  const handleRegister = (email, password) => {
+    auth.register(email, password)
+      .then((res) => {
+        if (res.data._id) {
+          setInfoToolTipStatus('success');
+          setIsInfoToolTipOpen(true);
+          navigate('/signin');
+        } else {
+          setInfoToolTipStatus('fail');
+          setIsInfoToolTipOpen(true);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        setInfoToolTipStatus('fail');
+        setIsInfoToolTipOpen(true);
+      });
+  };
+
+  const handleLogin = (email, password) => {
+    auth.login(email, password)
+      .then((res) => {
+        if (res.token) {
+          setIsLoggedIn(true);
+          setEmailAdress(email);
+          localStorage.setItem('jwt', res.token);
+          navigate('/');
+        } else {
+          setInfoToolTipStatus('fail');
+          setIsInfoToolTipOpen(true);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        setInfoToolTipStatus('fail');
+        setIsInfoToolTipOpen(true);
+      });
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('jwt');
+    setIsLoggedIn(false);
+    navigate('/signin');
+  };
+
+  // Profile Updates and Add Card Handlers //
   const handleUpdateUser = (userUpdateData) => {
     api.editUserInfo(userUpdateData).then((newUserData) => {
       setCurrentUser(newUserData);
@@ -107,12 +177,12 @@ function App() {
   return (
     <UserContext.Provider value = {currentUser}>
       <div className='page'>
-        <Header/>
+        <Header email={emailAdress} onLogout={handleLogout} />
         <Routes>
           <Route
             path='/'
             element={
-              <ProtectedRoute /*isLoggedIn={isLoggedIn}*/>
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
                 <Main
                   onEditProfileClick={handleEditProfileClick}
                   onAddPlaceClick={handleAddPlaceClick}
@@ -125,9 +195,8 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route path='/signup' element={<Register /*onRegister={handleRegister}*/ />}/>
-          <Route path='/signin' element={<Login /*onLogin={handleLogin}*/ />}/>
-          <Route path='/infotooltip' element={<InfoToolTip/>} />
+          <Route path='/signup' element={<Register onRegister={handleRegister} />}/>
+          <Route path='/signin' element={<Login onLogin={handleLogin} />}/>
           <Route path='/*' element ={<Navigate to='/' />} />
         </Routes>
         <Footer/>
@@ -154,6 +223,11 @@ function App() {
           card={selectedCardToDelete}
           onClose={closeAllPopups}
           onDeleteCard={handleCardDelete}
+        />
+        <InfoToolTip
+          isOpen={isInfoToolTipOpen}
+          onClose={closeAllPopups}
+          status={infoToolTipStatus}
         />
       </div>
     </UserContext.Provider>
