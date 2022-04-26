@@ -39,15 +39,20 @@ function App() {
   const [selectedCardToDelete, setSelectedCardToDelete] = useState(null);
 
   // Token check on page load //
-  /* useEffect(() => {
+  useEffect(() => {
     const token = localStorage.getItem('jwt');
     if (token) {
       auth.checkToken(token)
         .then((res) => {
-          console.log(res);
+          setEmailAdress(res.data.email);
+          setIsLoggedIn(true);
+          navigate('/');
+        })
+        .catch((err) => {
+          console.log(err);
         });
     }
-  }); */
+  }, [navigate]);
 
   //  Current User and Card Api calls on page load //
   useEffect(() => {
@@ -104,9 +109,9 @@ function App() {
     auth.login(email, password)
       .then((res) => {
         if (res.token) {
-          setIsLoggedIn(true);
-          setEmailAdress(email);
           localStorage.setItem('jwt', res.token);
+          setEmailAdress(email);
+          setIsLoggedIn(true);
           navigate('/');
         } else {
           setInfoToolTipStatus('fail');
@@ -122,6 +127,7 @@ function App() {
 
   const handleLogout = () => {
     localStorage.removeItem('jwt');
+    setEmailAdress('');
     setIsLoggedIn(false);
     navigate('/signin');
   };
