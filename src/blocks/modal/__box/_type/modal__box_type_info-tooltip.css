@@ -1,0 +1,5 @@
+@media (max-width: 320px) {
+  .modal__box_type_info-tooltip {
+    padding: 25px 18px;
+  }
+}
