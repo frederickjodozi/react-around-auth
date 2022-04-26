@@ -1,7 +1,7 @@
 import { Routes, Route, Link } from 'react-router-dom';
 import logo from '../images/header__logo.svg';
 
-function Header() {
+function Header({ email, onLogout }) {
   return (
     <header className='header page__wrapper page__wrapper_disabled'>
       <img className='header__logo' src={logo} alt='Around the US'/>
@@ -10,8 +10,8 @@ function Header() {
           path='/'
           element={
             <div className='header__info'>
-              <span className='header__email'>email@Email</span>
-              <button className='header__logout-button' /*handleLogOut*/>Log out</button>
+              <span className='header__email'>{ email }</span>
+              <button className='header__logout-button' onClick={onLogout}>Log out</button>
             </div>
           }
         />
