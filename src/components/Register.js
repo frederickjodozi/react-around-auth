@@ -24,14 +24,14 @@ function Register({ onRegister }) {
   };
 
   return (
-    <div className='register page__wrapper'>
-      <h3 className='register__title'>Sign up</h3>
-      <form className='register__form' onSubmit={handleSubmit} >
+    <div className='auth page__wrapper'>
+      <h3 className='auth__title'>Sign up</h3>
+      <form className='auth__form' onSubmit={handleSubmit} >
         <input
           type='email'
           name='email'
-          className='register__input'
-          id='register__email'
+          className='auth__input'
+          id='auth__email'
           value={inputValues.email}
           onChange={handleChange}
           placeholder='Email'
@@ -40,8 +40,8 @@ function Register({ onRegister }) {
         <input
           type='text'
           name='password'
-          className='register__input'
-          id='register__password'
+          className='auth__input'
+          id='auth__password'
           value={inputValues.password}
           onChange={handleChange}
           placeholder='Password'
@@ -49,9 +49,9 @@ function Register({ onRegister }) {
           maxLength='30'
           required
         />
-        <button className='register__save-button' type='submit'>Sign up</button>
+        <button className='auth__save-button' type='submit'>Sign up</button>
       </form>
-      <Link to='/signin' className='register__link'>Already a member? Log in here!</Link>
+      <Link to='/signin' className='auth__link'>Already a member? Log in here!</Link>
     </div>
   );
 }
