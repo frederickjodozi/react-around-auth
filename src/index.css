@@ -25,8 +25,7 @@
 @import url(./blocks/modal/__save-button/_type/modal__save-button_type_small.css);
 @import url(./blocks/modal/__save-button/_inactive/modal__save-button_inactive.css);
 @import url(./blocks/modal/__figure/modal__figure.css);
-@import url(./blocks/modal/__image/_type/modal__image_type_image-preview.css);
-@import url(./blocks/modal/__image/_type/modal__image_type_info-tooltip.css);
-@import url(./blocks/modal/__message/modal__message.css);
+@import url(./blocks/modal/__image-preview/modal__image-preview.css);
 @import url(./blocks/modal/__caption/modal__caption.css);
-
+@import url(./blocks/modal/__auth-logo/modal__auth-logo.css);
+@import url(./blocks/modal/__auth-message/modal__auth-message.css);
