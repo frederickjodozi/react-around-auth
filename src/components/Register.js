@@ -35,6 +35,7 @@ function Register({ onRegister }) {
           value={inputValues.email}
           onChange={handleChange}
           placeholder='Email'
+          autoComplete='off'
           required
         />
         <input
@@ -47,6 +48,7 @@ function Register({ onRegister }) {
           placeholder='Password'
           minLength='2'
           maxLength='30'
+          autoComplete='off'
           required
         />
         <button className='auth__save-button' type='submit'>Sign up</button>
