@@ -1,0 +1,13 @@
+@media (max-width: 500px) {
+  .header__logout-button_type_menu {
+    display: flex;
+    visibility: visible;
+  }
+}
+
+@media (min-width: 501px) {
+  .header__logout-button_type_menu {
+    display: none;
+    visibility: hidden;
+  }
+}

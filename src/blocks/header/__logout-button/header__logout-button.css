@@ -14,3 +14,10 @@
   cursor: pointer;
   opacity: 60%;
 }
+
+@media (max-width: 500px) {
+  .header__logout-button {
+    display: none;
+    visibility: hidden;
+  }
+}

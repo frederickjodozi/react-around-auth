@@ -1,0 +1,7 @@
+.header__list-item {
+  padding: 18px 0 0 0;
+}
+
+.header__list-item:first-child {
+  padding: 0;
+}

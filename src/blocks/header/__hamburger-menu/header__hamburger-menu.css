@@ -1,0 +1,25 @@
+.header__hamburger-menu {
+  display: none;
+  visibility: hidden;
+  width: 24px;
+  height: 20px;
+  background-color: rgba(0,0,0,0);
+  background-image: url(../../../images/header__hamburger-menu.svg);
+  background-position: center;
+  border: none;
+  padding: 0;
+  margin: 10px 0 0 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.header__hamburger-menu:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+@media (max-width: 500px) {
+  .header__hamburger-menu {
+    display: flex;
+    visibility: visible;
+  } 
+}

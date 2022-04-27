@@ -1,0 +1,24 @@
+.header__close-button {
+    display: none;
+    visibility: hidden;
+    width: 30px;
+    height: 30px;
+    background-color: rgba(0,0,0,0);
+    background-image: url(../../../images/modal__close-button_size_small.svg);
+    background-position: center;
+    border: none;
+    padding: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.header__close-button:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+@media (max-width: 500px) {
+  .header__close-button {
+    display: flex;
+    visibility: visible;
+  } 
+}
