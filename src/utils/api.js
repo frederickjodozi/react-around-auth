@@ -99,8 +99,10 @@ class Api {
       .then((res) => this._getResponseData(res));
   }
 
+  // eslint-disable-next-line class-methods-use-this
   _getResponseData(res) {
     if (!res.ok) {
+      // eslint-disable-next-line prefer-promise-reject-errors
       return Promise.reject(`Err: ${res.status}`);
     }
     return res.json();
