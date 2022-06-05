@@ -14,6 +14,7 @@ function Popup({
     };
 
     document.addEventListener('keydown', closeByEscape);
+    // eslint-disable-next-line consistent-return
     return () => document.removeEventListener('keydown', closeByEscape);
   }, [isOpen, card, onClose]);
 
