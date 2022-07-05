@@ -1,32 +1,33 @@
 class Api {
-  constructor({ baseUrl, authToken }) {
+  constructor({ baseUrl }) {
     this._baseUrl = baseUrl;
-    this._authToken = authToken;
   }
 
-  getUserInfo() {
+  getUserInfo(token) {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: {
-        authorization: this._authToken,
+        authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
       },
     })
       .then((res) => this._getResponseData(res));
   }
 
-  getCards() {
+  getCards(token) {
     return fetch(`${this._baseUrl}/cards`, {
       headers: {
-        authorization: this._authToken,
+        authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
       },
     })
       .then((res) => this._getResponseData(res));
   }
 
-  editUserInfo(data) {
+  editUserInfo(data, token) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: {
-        authorization: this._authToken,
+        authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
@@ -37,11 +38,11 @@ class Api {
       .then((res) => this._getResponseData(res));
   }
 
-  editUserAvatar(data) {
+  editUserAvatar(data, token) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
       headers: {
-        authorization: this._authToken,
+        authorization: `Bearer ${token}`,
         'Content-type': 'application/json',
       },
       body: JSON.stringify({
@@ -51,11 +52,11 @@ class Api {
       .then((res) => this._getResponseData(res));
   }
 
-  addCard(data) {
+  addCard(data, token) {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
       headers: {
-        authorization: this._authToken,
+        authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
@@ -66,33 +67,33 @@ class Api {
       .then((res) => this._getResponseData(res));
   }
 
-  deleteCard(cardId) {
+  deleteCard(cardId, token) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
       headers: {
-        authorization: this._authToken,
+        authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
       },
     })
-      .then((res) => this._getResponseData(res));
+      .then((res) => console.log(res));
   }
 
-  addLike(cardId) {
-    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+  addLike(cardId, token) {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: 'PUT',
       headers: {
-        authorization: this._authToken,
+        authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
       },
     })
       .then((res) => this._getResponseData(res));
   }
 
-  deleteLike(cardId) {
-    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+  deleteLike(cardId, token) {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: 'DELETE',
       headers: {
-        authorization: this._authToken,
+        authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
       },
     })
@@ -103,15 +104,14 @@ class Api {
   _getResponseData(res) {
     if (!res.ok) {
       // eslint-disable-next-line prefer-promise-reject-errors
-      return Promise.reject(`Err: ${res.status}`);
+      return Promise.reject(`${res.status}: ${res.statusText}`);
     }
     return res.json();
   }
 }
 
 const api = new Api({
-  baseUrl: 'https://around.nomoreparties.co/v1/group-13',
-  authToken: '487d57fd-0c04-4caf-a7fc-6016fd47c784',
+  baseUrl: 'http://localhost:3000',
 });
 
 export default api;

@@ -44,7 +44,7 @@ function App() {
     if (token) {
       auth.checkToken(token)
         .then((res) => {
-          setEmailAdress(res.data.email);
+          setEmailAdress(res.email);
           setIsLoggedIn(true);
           navigate('/');
         })
@@ -52,22 +52,28 @@ function App() {
           console.log(err);
         });
     }
-  }, [navigate]);
+  }, []);
 
   //  Current User and Card Api calls on page load //
   useEffect(() => {
-    api.getUserInfo().then((userData) => {
-      setCurrentUser(userData);
-    })
-      .catch((err) => console.log(`Error: ${err}`));
-  }, []);
+    const token = localStorage.getItem('jwt');
+    if (token) {
+      api.getUserInfo(token).then((userData) => {
+        setCurrentUser(userData);
+      })
+        .catch((err) => console.log(`Error: ${err}`));
+    }
+  }, [isLoggedIn]);
 
   useEffect(() => {
-    api.getCards().then((cardsData) => {
-      setCards(cardsData);
-    })
-      .catch((err) => console.log(`Error: ${err}`));
-  }, []);
+    const token = localStorage.getItem('jwt');
+    if (token) {
+      api.getCards(token).then((cardsData) => {
+        setCards(cardsData);
+      })
+        .catch((err) => console.log(`Error: ${err}`));
+    }
+  }, [isLoggedIn]);
 
   // Click Event Handlers //
   const handleEditProfileClick = () => setIsEditProfilePopupOpen(true);
@@ -89,7 +95,7 @@ function App() {
   const handleRegister = (email, password) => {
     auth.register(email, password)
       .then((res) => {
-        if (res.data._id) {
+        if (res._id) {
           setInfoToolTipStatus('success');
           setIsInfoToolTipOpen(true);
           navigate('/signin');
@@ -134,50 +140,65 @@ function App() {
 
   // Profile Updates and Add Card Handlers //
   const handleUpdateUser = (userUpdateData) => {
-    api.editUserInfo(userUpdateData).then((newUserData) => {
-      setCurrentUser(newUserData);
-      closeAllPopups();
-    })
-      .catch((err) => console.log(`Error: ${err}`));
-  };
-
-  const handleUpdateAvatar = (avatarUpdateData) => {
-    api.editUserAvatar(avatarUpdateData).then((newAvatarData) => {
-      setCurrentUser(newAvatarData);
-      closeAllPopups();
-    })
-      .catch((err) => console.log(`Error: ${err}`));
-  };
-
-  const handleAddCard = (cardData) => {
-    api.addCard(cardData).then((newCard) => {
-      setCards([newCard, ...cards]);
-      closeAllPopups();
-    })
-      .catch((err) => console.log(`Error: ${err}`));
-  };
-
-  // Card Event Handlers //
-  const handleCardLike = (card, cardId) => {
-    if (card.likes.some((item) => item._id === currentUser._id)) {
-      api.deleteLike(cardId).then((newCard) => {
-        setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
-      })
-        .catch((err) => console.log(`Error: ${err}`));
-    } else {
-      api.addLike(cardId).then((newCard) => {
-        setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
+    const token = localStorage.getItem('jwt');
+    if (token) {
+      api.editUserInfo(userUpdateData, token).then((newUserData) => {
+        setCurrentUser(newUserData);
+        closeAllPopups();
       })
         .catch((err) => console.log(`Error: ${err}`));
     }
   };
 
+  const handleUpdateAvatar = (avatarUpdateData) => {
+    const token = localStorage.getItem('jwt');
+    if (token) {
+      api.editUserAvatar(avatarUpdateData, token).then((newAvatarData) => {
+        setCurrentUser(newAvatarData);
+        closeAllPopups();
+      })
+        .catch((err) => console.log(`Error: ${err}`));
+    }
+  };
+
+  const handleAddCard = (cardData) => {
+    const token = localStorage.getItem('jwt');
+    if (token) {
+      api.addCard(cardData, token).then((newCard) => {
+        setCards([newCard, ...cards]);
+        closeAllPopups();
+      })
+        .catch((err) => console.log(`Error: ${err}`));
+    }
+  };
+
+  // Card Event Handlers //
+  const handleCardLike = (card, cardId) => {
+    const token = localStorage.getItem('jwt');
+    if (token) {
+      if (card.likes.some((item) => item === currentUser._id)) {
+        api.deleteLike(cardId, token).then((newCard) => {
+          setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
+        })
+          .catch((err) => console.log(`Error: ${err}`));
+      } else {
+        api.addLike(cardId, token).then((newCard) => {
+          setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
+        })
+          .catch((err) => console.log(`Error: ${err}`));
+      }
+    }
+  };
+
   const handleCardDelete = (cardId) => {
-    api.deleteCard(cardId).then(() => {
-      setCards((items) => (items.filter((card) => card._id !== cardId)));
-      closeAllPopups();
-    })
-      .catch((err) => console.log(`Error: ${err}`));
+    const token = localStorage.getItem('jwt');
+    if (token) {
+      api.deleteCard(cardId, token).then(() => {
+        setCards((items) => (items.filter((card) => card._id !== cardId)));
+        closeAllPopups();
+      })
+        .catch((err) => console.log(`Error: ${err}`));
+    }
   };
 
   return (
