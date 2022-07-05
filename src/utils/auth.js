@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://register.nomoreparties.co';
+export const BASE_URL = 'http://localhost:3000';
 
 export const getResponseData = (res) => {
   if (!res.ok) {
@@ -17,7 +17,7 @@ export const register = (email, password) => fetch(`${BASE_URL}/signup`, {
 })
   .then((res) => getResponseData(res));
 
-export const login = (email, password) => fetch(`${BASE_URL}/signin`, {
+export const login = (email, password) => fetch(`${BASE_URL}/login`, {
   method: 'POST',
   headers: {
     Accept: 'application/json',
@@ -35,8 +35,8 @@ export const login = (email, password) => fetch(`${BASE_URL}/signin`, {
 export const checkToken = (token) => fetch(`${BASE_URL}/users/me`, {
   headers: {
     Accept: 'application/json',
+    authorization: `Bearer ${token}`,
     'Content-Type': 'application/json',
-    Authorization: `Bearer ${token}`,
   },
 })
   .then((res) => getResponseData(res));
