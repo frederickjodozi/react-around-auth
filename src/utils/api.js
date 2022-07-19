@@ -111,7 +111,7 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: process.env.NODE_ENV === 'production' ? 'https://api.aroundtheusa.students.nomoreparties.sbs/' : 'http://localhost:3000',
+  baseUrl: process.env.NODE_ENV === 'production' ? 'https://api.aroundtheusa.students.nomoreparties.sbs' : 'http://localhost:3000',
 });
 
 export default api;
